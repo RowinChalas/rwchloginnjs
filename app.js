@@ -2,7 +2,7 @@
 const exp = require('express')
 
 const app = exp();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3002;
 
 
 app.use(exp.static(__dirname+"/public"))
@@ -12,29 +12,12 @@ app.set('views', __dirname+"/views");
 
 
 
+
 //Rutas render
-app.get('/dinamicRender',(req,res)=>{
-        res.render("index",
-        {
-                titulo:"Renderizado de pagina dimanica"
-        });
-})
-
 //rutas
-app.get('/',(req,res)=>{
-        //res.send("hello world")
-        res.render("index",
-        {
-                titulo:"Bienvenido a mi pagina"
-        });
-});
+app.use('/',require('./router/RutasWeb'));
 
-app.get('/servicio',(req,res)=>{
-       // console.log(__dirname);
-      //  res.send({"m":"estas en el area de sergvicio"});
-
-      res.render("servicio");
-})
+app.use("/mascotas",require("./router/Mascotas"));
 
 app.use((req,res,next)=>{
         //res.status(404).sendFile(__dirname+"/public/404.html");
