@@ -22,7 +22,11 @@ app.get('/dinamicRender',(req,res)=>{
 
 //rutas
 app.get('/',(req,res)=>{
-        res.send("hello world")
+        //res.send("hello world")
+        res.render("index",
+        {
+                titulo:"Bienvenido a mi pagina"
+        });
 });
 
 app.get('/servicio',(req,res)=>{
